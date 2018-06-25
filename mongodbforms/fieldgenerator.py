@@ -14,7 +14,7 @@ except ImportError:
     try:
         from django.utils.encoding import smart_unicode
     except ImportError:
-        from django.forms.util import smart_unicode
+        from django.forms.utils import smart_unicode
 from django.utils.text import capfirst
 
 from mongoengine import (ReferenceField as MongoReferenceField,
@@ -130,11 +130,8 @@ class MongoFormFieldGenerator(object):
         return ''
 
     def get_field_help_text(self, field):
-        if field.help_text:
-            return field.help_text
-        else:
-            return ''
-            
+        return getattr(field, 'help_text', '')
+
     def get_field_default(self, field):
         if isinstance(field, (MongoListField, MongoMapField)):
             f = field.field

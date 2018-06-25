@@ -144,4 +144,3 @@ of valid keys have a look at ``MongoFormFieldGenerator``.
     class MessageForm(DocumentForm):
         class Meta:
             formfield_generator = MyFieldGenerator
-
